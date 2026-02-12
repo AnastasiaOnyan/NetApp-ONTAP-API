@@ -1,4 +1,4 @@
-A thick volume is created. The NFS protocol is used for export rules. The "Snapshot copies" folder is hidden from users. Snapshot reserve is set to 0%. Storage efficiency is disabled (deduplication, cross-volume deduplication, compression).
+This script creates a volume, an  export policy and an export rules using the REST API. A thick volume is created. The NFS protocol is used for export rules. The "Snapshot copies" folder is hidden from users. Snapshot reserve is set to 0%. Storage efficiency is disabled (deduplication, cross-volume deduplication, compression).
 
 Tested on:
 - ONTAP AFF 9.14.1
