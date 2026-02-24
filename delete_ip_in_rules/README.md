@@ -1,51 +1,30 @@
-This script deletes ONE IP address from an export rule in NetApp ONTAP using the REST API.
+This script removes one IP address from an export rule in NetApp ONTAP using the REST API.
 
-⚠️ Important:
-
-If the export rule contains only one client IP address, the rule will be deleted together with that IP address.
-
-If the export rule contains multiple client IP addresses, only the specified IP address will be removed, and the export rule will remain.
+!!! An important note:
+The entire rule will be deleted if the export rule contains only one client IP address.
+Only the specified IP address will be removed and the rule will remain if the export rule contains multiple client IP addresses.
 
 The script was tested on:
+- ONTAP AFF 9.14.1
+- Python 3.10
 
-ONTAP AFF 9.14.1
+Input parameters must be provided as command line arguments in bash separated by space:
 
-Python 3.10
-
-When running the script, input parameters must be provided via the console. The script is executed from a Linux bash shell.
-
-Command template:
 python3 delete_IP_in_rule.py <IP> <login> <password> <svm_name> <export_policy_name> <client_ip_delete>
 
 Where:
+- IP — cluster IP address
+- login — admin login
+- password — admin password
+- svm_name — name of the SVM where the export policy resides
+- export_policy_name — name of the export policy associated with the IP address
+- client_ip_delete — the IP address you want to remove
 
-IP — cluster IP address
+Parameters may contain special characters that must be escaped (@ # & $ ! " ' [ ] { } * ( ) < > |). Use single ('') or double ("") quotes for escaping.
+For example, if the password is Disk000@Somethinghere, the @ symbol requires escaping when passed in bash: "Disk000@Somethinghere"
 
-login — administrator login
+An example of how to run the script:
 
-password — administrator password
-
-svm_name — name of the SVM where the export policy resides
-
-export_policy_name — name of the export policy associated with the IP address to be deleted
-
-client_ip_delete — IP address to be removed
-
-All parameters must be separated by a single space (no commas).
-
-Parameters may contain special characters that must be escaped when passed through bash:
-
-@ # & $ ! " ' [ ] { } * ( ) < > |
-
-Use single ('') or double ("") quotes for escaping.
-For example, if the password is Disk000@Somethinghere, the @ symbol requires escaping when passed on the command line:
-
-"Disk000@Somethinghere"
-
-or
-
-'Disk000@Somethinghere'
-Example:
 python3 delete_IP_in_rule.py 10.100.0.00 some_user "Disk@SomePassword" dc0_d000 dc0_d000_test_nfs_01_policy 10.100.10.01
 
 ***********************************************************************************************************************************
@@ -75,7 +54,8 @@ python3 delete_IP_in_rule.py <IP> <login> <password> <svm_name> <export_policy_n
 
 Пример запуска скрипта:
 
-`python3 delete_IP_in_rule.py 10.100.0.00 some_user "Disk@SomePassword" dc0_d000 dc0_d000_test_nfs_01_policy 10.100.10.01`
+python3 delete_IP_in_rule.py 10.100.0.00 some_user "Disk@SomePassword" dc0_d000 dc0_d000_test_nfs_01_policy 10.100.10.01
+
 
 
 
