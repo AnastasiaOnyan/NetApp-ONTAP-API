@@ -47,4 +47,4 @@ where:
 All parameters are passed separated by 1 space, without commas. The parameters may contain characters that need to be escaped when passing them through Bash (@ # & $ ! " ' [ ] { } * ( ) < > |). Quotes '' or "" are used for escaping. That is, if the password is the string Disk000@Somethinghere, then because of the @ character, the password must be escaped with quotes "Disk000@Somethinghere" or 'Disk000@Somethinghere' when passing it to the command line.
 Example of running the script:
 
-python3 modify_vol_size.py 10.100.0.00 some_user "Disk@SomePassword" dc0_d000 dc0_d000_test_nfs_01 2GB
+`python3 modify_vol_size.py 10.100.0.00 some_user "Disk@SomePassword" dc0_d000 dc0_d000_test_nfs_01 2GB`
